@@ -17,6 +17,8 @@ poke('surf', 'surf-action', {
 
 ## Subscription Paths
 
+(page url should change in accordance with this subscription path)
+
 ```
 /url
 ```
