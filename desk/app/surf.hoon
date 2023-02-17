@@ -49,7 +49,7 @@
         %set-url
       ~&  "Setting url to {(trip url.axn)}..."
       :_  this(url url.axn)
-      [%give %fact ~ surf-update+!>([%set-url url.axn])]~
+      [%give %fact ~[/url] surf-update+!>([%set-url url.axn])]~
     ==
   ==
 ::
