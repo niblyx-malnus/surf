@@ -44,6 +44,7 @@
   ^-  (quip card _this)
   ?+    mark  (on-poke:def mark vase)
       %surf-action
+    ?>  =(src our):bowl
     =/  axn  !<(action vase)
     ?-    -.axn
         %set-url
