@@ -58,7 +58,6 @@
     ==
     ::
       %handle-http-request
-    ?>  =(src.bowl our.bowl)
     =^  cards  state
       (handle-http !<([@ta =inbound-request:eyre] vase))
     [cards this]
@@ -80,7 +79,7 @@
         ::
           [%apps %surf ~]
         ?.  authenticated.inbound-request
-          :_(state (send 302 ~ %login-redirect './apps/hapibox'))
+          :_(state (send 302 ~ %login-redirect '/apps/surf'))
         :_(state (send 200 ~ %html surf-ui))
       == 
     ==

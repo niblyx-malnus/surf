@@ -3,55 +3,85 @@
     <script src="https://unpkg.com/@urbit/http-api"></script>
     <script src="/session.js"></script>
   </head>
-  <body>
-    <h1>Hello, world!</h1>
-    <button id="toggle" type="button" onClick="doSub()" >Subscribe</button>
-    <p id="event">```</p>
-    <p id="site">```</p>
+  <body onLoad="doSub()">
+    <table>
+      <tr>
+        <td>
+           <button
+             id="refresh"
+             type="button"
+             onClick="refresh()">&#8635;</button>
+        </td>
+        <td><input type="text" id="site" size="35"></td>
+        <td>
+           <button id="go" type="button" onClick="goTo()" >go</button>
+        </td>
+      </tr>
+    </table>
+    <br>
     <iframe id="iframe"
-            src="https://www.example.com"
-            onLoad="onLoad()"
             width="100%"
-            height="95%">
+            height="92%">
     </iframe>
   </body>
   <script>
     const api = new UrbitHttpApi.Urbit("");
     api.ship = window.ship;
-    const toggle = document.getElementById("toggle");
-    const event = document.getElementById("event");
     const iframe = document.getElementById("iframe");
     const site = document.getElementById("site");
     function doSub() {
       window.id = api.subscribe({
         app: "surf",
         path: "/url",
-        event: printEvent,
+        event: processUpdate,
         quit: doSub,
         err: subFail
       });
-      toggle.innerHTML = "Unsubscribe";
-      toggle.onclick = doUnsub;
-      event.innerHTML = "Awaiting event";
     };
     function doUnsub() {
       api.unsubscribe(window.id);
-      toggle.innerHTML = "Subscribe";
-      toggle.onclick = doSub;
-      event.innerHTML = "Subscription closed";
     };
-    function printEvent(update) {
-      event.innerHTML = JSON.stringify(update, null, 2);
-      iframe.src = update["set-url"];
-      console.log(update);
-      console.log(update["set-url"]);
-      console.log(iframe);
+    function setUrl(url) {
+      iframe.src = url;
+      site.placeholder = url;
+      site.innerHTML = url;
+      console.log("LOGGING");
+      console.log(url);
+    };
+    function processUpdate(update) {
+      var url = update["set-url"];
+      setUrl(url);
     };
     function subFail() {
-      event.innerHTML = "Subscription failed!";
+      ;
     };
     function onLoad() {
-      site.innerHTML = iframe.contentWindow.location.href;
     };
+    function goTo() {
+      const url = document.getElementById("site").value;
+      api.poke({
+        app: "surf",
+        mark: "surf-action",
+        json: {"set-url": url},
+        onSuccess: success,
+        onError: error
+      });
+    }
+    async function refresh() {
+      var urlJSON = await api.scry({app: "surf", path: "/url"});
+      setUrl(urlJSON["url"]);
+    }
+    function success() {
+      ;
+    }
+    function error() {
+      ;
+    }
+    site.addEventListener("keypress", function(event) {
+      if (event.key === "Enter") {
+        event.preventDefault();
+        document.getElementById("go").click();
+      }
+    }); 
   </script>
 </html>
