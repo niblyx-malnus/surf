@@ -1,0 +1,57 @@
+<html>
+  <head>
+    <script src="https://unpkg.com/@urbit/http-api"></script>
+    <script src="/session.js"></script>
+  </head>
+  <body>
+    <h1>Hello, world!</h1>
+    <button id="toggle" type="button" onClick="doSub()" >Subscribe</button>
+    <p id="event">```</p>
+    <p id="site">```</p>
+    <iframe id="iframe"
+            src="https://www.example.com"
+            onLoad="onLoad()"
+            width="100%"
+            height="95%">
+    </iframe>
+  </body>
+  <script>
+    const api = new UrbitHttpApi.Urbit("");
+    api.ship = window.ship;
+    const toggle = document.getElementById("toggle");
+    const event = document.getElementById("event");
+    const iframe = document.getElementById("iframe");
+    const site = document.getElementById("site");
+    function doSub() {
+      window.id = api.subscribe({
+        app: "surf",
+        path: "/url",
+        event: printEvent,
+        quit: doSub,
+        err: subFail
+      });
+      toggle.innerHTML = "Unsubscribe";
+      toggle.onclick = doUnsub;
+      event.innerHTML = "Awaiting event";
+    };
+    function doUnsub() {
+      api.unsubscribe(window.id);
+      toggle.innerHTML = "Subscribe";
+      toggle.onclick = doSub;
+      event.innerHTML = "Subscription closed";
+    };
+    function printEvent(update) {
+      event.innerHTML = JSON.stringify(update, null, 2);
+      iframe.src = update["set-url"];
+      console.log(update);
+      console.log(update["set-url"]);
+      console.log(iframe);
+    };
+    function subFail() {
+      event.innerHTML = "Subscription failed!";
+    };
+    function onLoad() {
+      site.innerHTML = iframe.contentWindow.location.href;
+    };
+  </script>
+</html>

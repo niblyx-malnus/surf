@@ -1,6 +1,8 @@
 /-  *surf
 /+  *command-parser, shoe, verb, dbug, default-agent,
+    server, schooner,
     surf :: import when testing to force compilation
+/*  surf-ui  %html  /app/surf-ui/html
 |%
 +$  versioned-state
   $%  state-0
@@ -29,7 +31,8 @@
 ::
 ++  on-init
   ^-  (quip card _this)
-  `this(url 'https://www.example.com/')
+  :_  this(url 'https://www.example.com/')
+  [%pass /eyre/connect %arvo %e %connect `/apps/surf %surf]~
 ::
 ++  on-save  !>(state)
 ::
@@ -42,6 +45,7 @@
 ++  on-poke
   |=  [=mark =vase]
   ^-  (quip card _this)
+  |^
   ?+    mark  (on-poke:def mark vase)
       %surf-action
     ?>  =(src our):bowl
@@ -52,13 +56,47 @@
       :_  this(url url.axn)
       [%give %fact ~[/url] surf-update+!>([%set-url url.axn])]~
     ==
+    ::
+      %handle-http-request
+    ?>  =(src.bowl our.bowl)
+    =^  cards  state
+      (handle-http !<([@ta =inbound-request:eyre] vase))
+    [cards this]
   ==
+  ++  handle-http
+    |=  [eyre-id=@ta =inbound-request:eyre]
+    ^-  (quip card _state)
+    =/  ,request-line:server
+      (parse-request-line:server url.request.inbound-request)
+    =+  send=(cury response:schooner eyre-id)
+    ::
+    ~&  inbound-request
+    ?+    method.request.inbound-request  
+      [(send 405 ~ %stock ~) state]
+      ::
+        %'GET'
+      ?+    site  
+          :_(state (send 404 ~ %plain "404 - Not Found"))
+        ::
+          [%apps %surf ~]
+        ?.  authenticated.inbound-request
+          :_(state (send 302 ~ %login-redirect './apps/hapibox'))
+        :_(state (send 200 ~ %html surf-ui))
+      == 
+    ==
+  --
 ::
 ++  on-watch
   |=  =path
   ^-  (quip card _this)
-  ?.  ?=([%url ~] path)  (on-watch:def path)
-  :_(this [%give %fact ~ surf-update+!>([%set-url url])]~)
+  ?>  =(our.bowl src.bowl)
+  ?+    path  (on-watch:def path)
+      [%url ~]
+    :_(this [%give %fact ~ surf-update+!>([%set-url url])]~)
+    ::
+      [%http-response *]
+    [~ this]
+  ==
 ::
 ++  on-leave  on-leave:def
 ::
@@ -69,7 +107,17 @@
   ``surf-view+!>(url+url)
 ::
 ++  on-agent  on-agent:def
-++  on-arvo   on-arvo:def
+::
+++  on-arvo
+  |=  [=wire =sign-arvo]
+  ^-  (quip card _this)
+  ?+  sign-arvo  (on-arvo:def wire sign-arvo)
+      [%eyre %bound *]
+    ~?  !accepted.sign-arvo
+      [dap.bowl 'eyre bind rejected!' binding.sign-arvo]
+    [~ this]
+  ==
+::
 ++  on-fail   on-fail:def
 ::
 ++  command-parser
