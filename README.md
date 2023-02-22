@@ -1,7 +1,8 @@
 # surf
 control your current url
 
-## Pokes
+## Basic Documentation
+### Pokes
 
 ```
 poke('surf', 'surf-action', {
@@ -9,15 +10,13 @@ poke('surf', 'surf-action', {
 })
 ```
 
-## Scries
+### Scries
 
 ```
 /~/scry/surf/url.json
 ```
 
-## Subscription Paths
-
-(page url should change in accordance with this subscription path)
+### Subscription Paths
 
 ```
 /url
