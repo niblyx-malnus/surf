@@ -27,7 +27,7 @@ Just a simple toy, but seems effective enough that it could be a jumping off poi
 11. Switch through command line apps with `Ctrl+X` until you see the `~zod:surf` prompt.
 12. Type `;printer` and hit `ENTER` to see the currently saved `url`.
 13. Open your browser to `[your-domain-name]/apps/surf`.
-14. Type `;set-url 'http[s]//[your-domain-name]'` from the CLI to navigate to your urbit's frontend.
+14. Type `;set-url 'http[s]://[your-domain-name]'` from the CLI to navigate to your urbit's frontend.
 
 ## Basic Documentation
 ### Pokes
