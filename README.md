@@ -30,6 +30,7 @@ Just a simple toy with several shortcomings, but seems effective enough that it 
 13. Open your browser to `[your-domain-name]/apps/surf`.
 14. Type `;set-url 'http[s]://[your-domain-name]'` and hit `ENTER` from the CLI to navigate to your urbit's frontend.
 
+## More Resources
 - To learn more about building urbit command line interfaces you can go [here](https://github.com/niblyx-malnus/clibox).
 - To learn more about using urbit's http-api you can go [here](https://github.com/niblyx-malnus/hapibox).
 
