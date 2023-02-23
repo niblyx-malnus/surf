@@ -17,7 +17,7 @@ Just a simple toy, but seems effective enough that it could be a jumping off poi
 ## Installation
 1. Clone this repo.
 2. Boot up a ship (fakezod or moon or whatever you use).
-4. `|new-desk %surf` to create a new desk called `%surf.
+4. `|new-desk %surf` to create a new desk called `%surf`.
 5. `|mount %surf` to access the `%surf` desk from the unix command line.
 6. At the unix command line `rm -rf [ship-name]/surf/*` to empty out the contents of the desk.
 7. `cp -r surf/* [ship-name]/surf` to copy the contents of this repo into your new desk.
