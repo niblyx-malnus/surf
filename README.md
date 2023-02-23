@@ -5,7 +5,7 @@ Navigate around the web directly from your urbit command line. (Or at least thos
 
 
 ## Why?
-Just a simple toy with several shortcomings, but seems effective enough that it could be a jumping off point to build some cool things.
+Just a simple toy with several shortcomings, but seems effective enough that it could be a jumping off point to build some other cool little toys.
 
 - Leverage regular patterns in urbit app urls to build tools to give you fine grained control over how you navigate around your ship's frontend interface.
 - Navigate around the regular web using patterns you've saved and tools you've built on your urbit.
