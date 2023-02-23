@@ -39,9 +39,13 @@ Just a simple toy with several shortcomings, but seems effective enough that it 
 ### Pokes
 
 ```
-poke('surf', 'surf-action', {
-  "set-url": "https://urbit.org/"
-})
+mark: %surf-action
+poke-as-noun: [%set-url url=cord]
+
+poke with http-api:
+  poke('surf', 'surf-action', {
+    "set-url": "https://urbit.org/"
+  })
 ```
 
 ### Scries
