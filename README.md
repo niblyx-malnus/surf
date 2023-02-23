@@ -1,9 +1,11 @@
 # surf
 control your current url
 
-Navigate around the web (or at least those portions of the web which allow themselves to be displayed in an iframe) directly from your urbit command line. Just a simple toy, but seems effective enough that it could be a jumping off point to build some cool things.
+Navigate around the web directly from your urbit command line. (Or at least those portions of the web which allow themselves to be displayed in an iframe...)
 
 ## Why?
+Just a simple toy, but seems effective enough that it could be a jumping off point to build some cool things.
+
 - Leverage regular patterns in urbit app urls to build tools to give you fine grained control over how you navigate around your ship's frontend interface.
 - Navigate around the regular web using patterns you've saved and tools you've built on your urbit.
 - ...
