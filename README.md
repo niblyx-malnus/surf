@@ -1,7 +1,7 @@
 # surf
 control your current url
 
-Navigate around the web directly from your urbit command line. (Or at least those portions of the web which allow themselves to be displayed in an iframe...)
+Opens an iframe in a the browser whose url can be set and controlled from your urbit. Navigate around the web directly from your urbit command line. (Or at least those portions of the web which allow themselves to be displayed in an iframe...)
 
 
 ## Why?
