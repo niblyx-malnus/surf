@@ -3,6 +3,7 @@ control your current url
 
 Navigate around the web directly from your urbit command line. (Or at least those portions of the web which allow themselves to be displayed in an iframe...)
 
+
 ## Why?
 Just a simple toy with several shortcomings, but seems effective enough that it could be a jumping off point to build some cool things.
 
@@ -28,6 +29,10 @@ Just a simple toy with several shortcomings, but seems effective enough that it 
 12. Type `;printer` and hit `ENTER` to see the currently saved `url`.
 13. Open your browser to `[your-domain-name]/apps/surf`.
 14. Type `;set-url 'http[s]://[your-domain-name]'` and hit `ENTER` from the CLI to navigate to your urbit's frontend.
+
+- To learn more about building urbit command line interfaces you can go [here](https://github.com/niblyx-malnus/clibox).
+- To learn more about using urbit's http-api you can go [here](https://github.com/niblyx-malnus/hapibox).
+
 
 ## Basic Documentation
 ### Pokes
