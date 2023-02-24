@@ -51,7 +51,8 @@ poke with http-api:
 ### Scries
 
 ```
-/~/scry/surf/url.json
+Dojo:    .^([%url cord] %gx /=surf=/url/noun)
+Browser: [your-domain-name]/~/scry/surf/url.json
 ```
 
 ### Subscription Paths
